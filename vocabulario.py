@@ -10,7 +10,7 @@ print("Reading the file COV_train.xlsx ...")
 
 
 def readFile(fileName):
-  xlsx_file = Path(filename)
+  xlsx_file = Path(fileName)
   wb_obj = openpyxl.load_workbook(filename=xlsx_file, read_only=True)
   sheet = wb_obj.active
   text = []
@@ -31,7 +31,7 @@ text = data.values[:, 0].tolist()
 
 print("Tokenizing every tweet and filtering tokens")
 
-words = []
+words = np.array([])
 for row in text:
   doc = nlp(row)
   for token in doc:
@@ -44,9 +44,9 @@ for row in text:
     #character = re.findall('\w+', word)
     if not token.is_stop and not token.is_punct and not url and not mentions and not htmlTags and not unicode and not spaces and not word.isdigit():
       if(word.islower()):
-        words.append(word)
+        words = np.append(words, word)
       else:
-        words.append(word.lower())
+        words = np.append(words, word.lower())
 
 print("Sorting and removing uniques from vocabulary ...")
 
