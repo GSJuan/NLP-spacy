@@ -3,7 +3,7 @@ import numpy as np
 import re
 import spacy
 from collections import Counter
-from math import log
+from numpy import log as ln
 
 def readFile(fileName):
   fileObj = open(fileName, "r") #opens the file in read mode
@@ -61,23 +61,23 @@ for word in vocabulary:
 
   positiveFrequency = positiveList[word] 
   if positiveFrequency > 3:
-    probabilityPos = log(positiveFrequency + 1) - log(positiveWords.size + vocabulary.size)
-    posFile.write("\nPalabra: " + word + " Frec: " + str(positiveFrequency) + " LogProb: " + str(probabilityPos))
+    probabilityPos = ln(positiveFrequency + 1) - ln(positiveWords.size + vocabulary.size)
+    posFile.write("\nPalabra: " + word + " Frec: " + str(positiveFrequency) + " lnProb: " + str(probabilityPos))
   else:
     unkPos += 1
 
   negativeFrequency = negativeList[word]
   if negativeFrequency > 3:
-    probabilityNeg = log(negativeFrequency + 1) - log(negativeWords.size + vocabulary.size)
-    negFile.write("\nPalabra: " + word + " Frec: " + str(negativeFrequency) + " LogProb: " + str(probabilityNeg))
+    probabilityNeg = ln(negativeFrequency + 1) - ln(negativeWords.size + vocabulary.size)
+    negFile.write("\nPalabra: " + word + " Frec: " + str(negativeFrequency) + " lnProb: " + str(probabilityNeg))
   else:
     unkNeg += 1
 
-unkPosProb = log(unkPos + 1) - log(positiveWords.size + vocabulary.size)
-posFile.write("\nPalabra: <UNK>" + " Frec: " + str(unkPos) + " LogProb: " + str(unkPosProb))
+unkPosProb = ln(unkPos + 1) - ln(positiveWords.size + vocabulary.size)
+posFile.write("\nPalabra: UNK" + " Frec: " + str(unkPos) + " lnProb: " + str(unkPosProb))
 
-unkNegProb = log(unkNeg + 1) - log(negativeWords.size + vocabulary.size)
-negFile.write("\nPalabra: <UNK>" + " Frec: " + str(unkNeg) + " LogProb: " + str(unkNegProb))
+unkNegProb = ln(unkNeg + 1) - ln(negativeWords.size + vocabulary.size)
+negFile.write("\nPalabra: UNK" + " Frec: " + str(unkNeg) + " lnProb: " + str(unkNegProb))
 
 posFile.close()
 negFile.close()
