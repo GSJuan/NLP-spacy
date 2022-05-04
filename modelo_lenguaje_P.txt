@@ -1,5 +1,5 @@
 Numero de documentos (tweets) del corpus: 18046
-Número de palabras del corpus: 235230
+Numero de palabras del corpus: 235230
 Palabra: abide Frec: 4 LogProb: -10.861795084865566
 Palabra: ability Frec: 34 LogProb: -8.915884935810253
 Palabra: able Frec: 211 LogProb: -7.114646722627653

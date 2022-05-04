@@ -1,7 +1,5 @@
 Numero de documentos (tweets) del corpus: 15398
-
-Número de palabras del corpus: 201117
-
+Numero de palabras del corpus: 201117
 Palabra: abandon Frec: 4 LogProb: -10.721569908891071
 Palabra: abandoned Frec: 6 LogProb: -10.385097672269858
 Palabra: ability Frec: 12 LogProb: -9.766058463863635

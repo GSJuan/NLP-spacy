@@ -53,7 +53,7 @@ print("Sorting and removing uniques from vocabulary ...")
 wordList = np.array(words)
 uniqueWords = np.unique(wordList)
 uniqueWords.sort()
-
+uniqueWords = np.delete(uniqueWords, 0)
 print("Dumping vocabulary into file ...")
 
 file = open("vocabulario.txt", "w+", encoding='utf-8')

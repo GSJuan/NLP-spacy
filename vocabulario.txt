@@ -1,5 +1,4 @@
-Number of words: 25498
-^nt
+Number of words: 25497
 aaaand
 aaannnddd
 aabutan
