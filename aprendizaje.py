@@ -25,8 +25,6 @@ positiveWords = np.array(readFile("corpusP.txt"))
 negativeWords = np.array(readFile("corpusN.txt"))
 vocabulary = np.array(readFile("vocabulario.txt"))
 
-vocabulary = np.delete(vocabulary, 0)
-
 print("Printing basic info into model files ...")
 
 file = open("modelo_lenguaje_P.txt", "w+", encoding='utf-8')
@@ -58,16 +56,16 @@ negFile = open("modelo_lenguaje_N.txt", "a+", encoding='utf-8')
 unkPos = 0
 unkNeg = 0
 for word in vocabulary:
-
-  positiveFrequency = positiveList[word] 
-  if positiveFrequency > 3:
+ 
+  if (word in positiveList) and positiveList[word]  > 3:
+    positiveFrequency = positiveList[word] 
     probabilityPos = ln(positiveFrequency + 1) - ln(positiveWords.size + vocabulary.size)
     posFile.write("\nPalabra: " + word + " Frec: " + str(positiveFrequency) + " lnProb: " + str(probabilityPos))
   else:
     unkPos += 1
-
-  negativeFrequency = negativeList[word]
-  if negativeFrequency > 3:
+  
+  if (word in negativeList) and negativeList[word] > 3:
+    negativeFrequency = negativeList[word]
     probabilityNeg = ln(negativeFrequency + 1) - ln(negativeWords.size + vocabulary.size)
     negFile.write("\nPalabra: " + word + " Frec: " + str(negativeFrequency) + " lnProb: " + str(probabilityNeg))
   else:

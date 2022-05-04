@@ -4,7 +4,7 @@ import re
 import spacy
 nlp = spacy.load('en_core_web_sm')
 from collections import Counter
-from math import log
+from numpy import log as ln
 
 urlRegexp = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
 mentionsRegexp = '@\S+'
@@ -70,10 +70,17 @@ data['Processed Tweets'] = data['Tweets'].apply(lambda tweet: preprocess(tweet))
 processedList = data['Processed Tweets'].tolist()
 tweetsList = data['Tweets'].tolist()
 
+print('Calculating the probabilities ...')
 totalTweets = len(processedList)
 
-positiveProb = log(positiveClass) - log(totalTweets)
-negativeProb = log(negativeClass) - log(totalTweets)
+print(str(totalTweets) + ' tweets to be processed ...')
+
+positiveProb = ln(positiveClass) - ln(totalTweets)
+negativeProb = ln(negativeClass) - ln(totalTweets)
+
+print('Positive class probability ' + str(positiveClass / totalTweets))
+print('Negative class probability ' + str(negativeClass / totalTweets))
+
 
 print('Dumping all info into files ...')
 
@@ -85,7 +92,6 @@ for index in range(len(processedList)):
   negProb = 0
   tweet = processedList[index]
   for word in tweet:
-
     if (word in positiveLogProb) and positiveLogProb[word] > 3:
       posProb += positiveLogProb[word]
     else:
