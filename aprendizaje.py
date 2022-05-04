@@ -25,6 +25,8 @@ positiveWords = np.array(readFile("corpusP.txt"))
 negativeWords = np.array(readFile("corpusN.txt"))
 vocabulary = np.array(readFile("vocabulario.txt"))
 
+vocabulary = np.delete(vocabulary, 0)
+
 print("Printing basic info into model files ...")
 
 file = open("modelo_lenguaje_P.txt", "w+", encoding='utf-8')
@@ -33,8 +35,8 @@ file.write("\nNúmero de palabras del corpus: " + str(positiveWords.size))
 file.close()
 
 file = open("modelo_lenguaje_N.txt", "w+", encoding='utf-8')
-file.write("Numero de documentos (tweets) del corpus: " + str(negativeTweets.size))
-file.write("\nNúmero de palabras del corpus: " + str(negativeWords.size))
+file.write("Numero de documentos (tweets) del corpus: " + str(negativeTweets.size) + "\n")
+file.write("\nNúmero de palabras del corpus: " + str(negativeWords.size) + "\n")
 file.close()
 
 #negativo
