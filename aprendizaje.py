@@ -40,13 +40,11 @@ negativeList = Counter(negativeWords.tolist())
 
 vocabSize = vocabulary.size
 
-numPosWords = len(positiveList.items())
-numNegWords = len(negativeList.items())
+# numPosWords = len(positiveList.items())
+# numNegWords = len(negativeList.items())
 
-""""
 numPosWords = positiveWords.size
 numNegWords = negativeWords.size
-"""
 
 posFile = open("modelo_lenguaje_P.txt", "w+", encoding='utf-8')
 posFile.write("Número de documentos (tweets) del corpus: " + str(positiveTweets.size))

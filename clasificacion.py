@@ -92,12 +92,12 @@ for index in range(len(processedList)):
   negProb = 0
   tweet = processedList[index]
   for word in tweet:
-    if (word in positiveLogProb) and positiveLogProb[word] > 2:
+    if (word in positiveLogProb):
       posProb += positiveLogProb[word]
     else:
       posProb += positiveLogProb['UNK']
 
-    if (word in negativeLogProb) and negativeLogProb[word] > 2:
+    if (word in negativeLogProb):
       negProb += negativeLogProb[word]
     else:
       negProb += negativeLogProb['UNK']
