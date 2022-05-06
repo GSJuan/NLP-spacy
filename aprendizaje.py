@@ -24,6 +24,7 @@ print("Reading the Positive and negative vocabulary ...")
 positiveWords = np.array(readFile("corpusP.txt"))
 negativeWords = np.array(readFile("corpusN.txt"))
 vocabulary = np.array(readFile("vocabulario.txt"))
+vocabulary = np.delete(vocabulary, 0)
 
 print("Printing basic info into model files ...")
 
@@ -56,29 +57,34 @@ negFile.write("\nNúmero de palabras del corpus: " + str(numNegWords))
 
 print("Computing frequencies ...")
 
-unkPos = 0
-unkNeg = 0
+unkFreq = 0
+
 for word in vocabulary:
  
-  if (word in positiveList) and positiveList[word]  > 5:
-    positiveFrequency = positiveList[word] 
-    probabilityPos = ln(positiveFrequency + 1) - ln(numPosWords + vocabSize)
-    posFile.write("\nPalabra: " + word + " Frec: " + str(positiveFrequency) + " lnProb: " + str(round(probabilityPos, 2)))
-  else:
-    unkPos += 1
-  
-  if (word in negativeList) and negativeList[word] > 5:
-    negativeFrequency = negativeList[word]
-    probabilityNeg = ln(negativeFrequency + 1) - ln(numNegWords + vocabSize)
-    negFile.write("\nPalabra: " + word + " Frec: " + str(negativeFrequency) + " lnProb: " + str(round(probabilityNeg, 2)))
-  else:
-    unkNeg += 1
+  posFreq = 0
+  negFreq = 0
 
-unkPosProb = ln(unkPos + 1) - ln(numPosWords + vocabSize)
-posFile.write("\nPalabra: UNK" + " Frec: " + str(unkPos) + " lnProb: " + str(round(unkPosProb, 2)))
+  if word in positiveList:
+    posFreq = positiveList[word]
 
-unkNegProb = ln(unkNeg + 1) - ln(numNegWords + vocabSize)
-negFile.write("\nPalabra: UNK" + " Frec: " + str(unkNeg) + " lnProb: " + str(round(unkNegProb, 2)))
+  if word in negativeList:
+    negFreq = negativeList[word]
+
+  if ((posFreq + negFreq) > 3):
+    probabilityPos = ln(posFreq + 1) - ln(numPosWords + vocabSize)
+    probabilityNeg = ln(negFreq + 1) - ln(numNegWords + vocabSize)
+
+    posFile.write("\nPalabra: " + word + " Frec: " + str(posFreq) + " lnProb: " + str(round(probabilityPos, 2)))  
+    negFile.write("\nPalabra: " + word + " Frec: " + str(negFreq) + " lnProb: " + str(round(probabilityNeg, 2)))
+
+  else:
+    unkFreq += 1
+
+unkPosProb = ln(unkFreq + 1) - ln(numPosWords + vocabSize)
+posFile.write("\nPalabra: UNK" + " Frec: " + str(unkFreq) + " lnProb: " + str(round(unkPosProb, 2)))
+
+unkNegProb = ln(unkFreq + 1) - ln(numNegWords + vocabSize)
+negFile.write("\nPalabra: UNK" + " Frec: " + str(unkFreq) + " lnProb: " + str(round(unkNegProb, 2)))
 
 posFile.close()
 negFile.close()
