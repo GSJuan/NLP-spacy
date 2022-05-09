@@ -8393,4 +8393,4 @@ Palabra: zombie Frec: 6 lnProb: -10.39
 Palabra: zombies Frec: 5 lnProb: -10.54
 Palabra: zone Frec: 6 lnProb: -10.39
 Palabra: zoom Frec: 2 lnProb: -11.23
-Palabra: UNK Frec: 17104 lnProb: -2.58
+Palabra: UNK Frec: 23786 lnProb: -2.25

@@ -78,7 +78,7 @@ for word in vocabulary:
     negFile.write("\nPalabra: " + word + " Frec: " + str(negFreq) + " lnProb: " + str(round(probabilityNeg, 2)))
 
   else:
-    unkFreq += 1
+    unkFreq += posFreq + negFreq
 
 unkPosProb = ln(unkFreq + 1) - ln(numPosWords + vocabSize)
 posFile.write("\nPalabra: UNK" + " Frec: " + str(unkFreq) + " lnProb: " + str(round(unkPosProb, 2)))
