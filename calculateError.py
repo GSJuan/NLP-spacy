@@ -3,8 +3,7 @@ import numpy as np
 import re
 import spacy
 nlp = spacy.load('en_core_web_sm')
-from collections import Counter
-from math import log
+
 
 def readFile(fileName):
   fileObj = open(fileName, "r") #opens the file in read mode
@@ -28,6 +27,6 @@ for index in range(len(classes)):
   elif classes[index] == 'Negative' and classified[index] == 'N':
     right += 1
 
-print("The accuracy is: " + str(right/len(classes)))
+print("The accuracy is: " + str(100 * (right/len(classes))))
       
 
