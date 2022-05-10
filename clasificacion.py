@@ -61,8 +61,11 @@ negativeClass = negativeHead[0]
 negativeClass = negativeClass.split(" ")
 negativeClass = float(negativeClass[6])
 
+testFile = input("Enter the name of the file to be classified: ")
+#testFile = 'COV_test.xlsx'
+
 print('Loading and processing the testing file ...')
-data = pd.read_excel('COV_test.xlsx', header=None, engine='openpyxl')
+data = pd.read_excel(testFile, header=None, engine='openpyxl')
 #data = pd.read_excel('COV_light_test.xlsx', header=None, engine='openpyxl')
 data.columns = ['Tweets']
 data['Processed Tweets'] = data['Tweets'].apply(lambda tweet: preprocess(tweet))
