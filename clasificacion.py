@@ -122,11 +122,11 @@ for index in range(len(processedList)):
 
   output = tweetsList[index][:10]
   output = output.replace("\n", " ")
-  output += ", "
+  output += ","
   output += str(round(posProb, 2))
-  output += ", "
+  output += ","
   output += str(round(negProb, 2))
-  output += ", "
+  output += ","
 
   if posProb > negProb:
     output += "P\n"
