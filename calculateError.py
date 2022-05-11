@@ -13,10 +13,10 @@ def readFile(fileName):
 
 classified = readFile("resumen_alu0101325583.txt")
 
-data = pd.read_excel('COV_train.xlsx', header=None, engine='openpyxl')
+data = pd.read_excel('COV_test_g1_debug.xlsx', header=None, engine='openpyxl')
 
-print("Reading the file COV_train.xlsx ...")
-data.columns = ['Tweet', 'Feeling']
+print("Reading the file COV_test_g1_debug.xlsx")
+data.columns = ['Number','Tweet', 'Feeling']
 
 classes = data['Feeling'].to_list()
 

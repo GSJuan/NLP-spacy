@@ -74,13 +74,15 @@ processedList = data['Processed Tweets'].tolist()
 tweetsList = data['Tweets'].tolist()
 
 print('Calculating the probabilities ...')
-totalTweets = len(processedList)
+
+#totalTweets = len(processedList)
+totalTweets = positiveClass + negativeClass
 
 print(str(totalTweets) + ' tweets to be processed ...')
 
-"""
 positiveProb = ln(positiveClass) - ln(totalTweets)
 negativeProb = ln(negativeClass) - ln(totalTweets)
+
 """
 positiveProb = positiveClass / totalTweets
 negativeProb = negativeClass / totalTweets
@@ -89,6 +91,7 @@ norm = positiveProb + negativeProb
 
 positiveProb = ln(positiveProb / norm)
 negativeProb = ln(negativeProb / norm)
+"""
 
 print('Positive class probability ' + str(positiveClass / totalTweets))
 print('Negative class probability ' + str(negativeClass / totalTweets))
@@ -118,6 +121,7 @@ for index in range(len(processedList)):
   negProb +=  negativeProb
 
   output = tweetsList[index][:10]
+  output = output.replace("\n", " ")
   output += ", "
   output += str(round(posProb, 2))
   output += ", "
