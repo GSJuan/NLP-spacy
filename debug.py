@@ -11,8 +11,8 @@ def readFile(fileName):
   fileObj.close()
   return words
 
-classified = readFile("resumen_alu0101325583.txt")
-
+#classified = readFile("resumen_alu0101325583.txt")
+classified = readFile("alu0101325583_monkeyLearn_resumen.txt")
 data = pd.read_excel('COV_test_g1_debug.xlsx', header=None, engine='openpyxl')
 
 print("Reading the file COV_test_g1_debug.xlsx")
@@ -42,6 +42,7 @@ for index in range(0, len(classes)):
 
 print("The accuracy is: " + str(100 * (right/len(classes))))
 print("Confusion matrix: ")
-print(str(PP) + " , " + str(PN))
-print(str(NP) + " , " + str(NN))
+print("  P   N")
+print("P " + str(PP) + " , " + str(PN))
+print("N " + str(NP) + " , " + str(NN))
       
